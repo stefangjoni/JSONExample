@@ -45,39 +45,43 @@ public class JSONFormat2 {
 
 		System.out.println(obj.toString());
 
+		Iterator key = obj.keys();
+		String p = key.next().toString();
+		JSONObject object = obj.getJSONObject(p);
+		Iterator key1 = object.keys();
 
 
-		Iterator key = obj2.keys();
-		while (key.hasNext()) {
-			String k = key.next().toString();
+		while (key1.hasNext()) {
+			String k = key1.next().toString();
 			if(k.equals("comments")) {
 
-				for(int i=0;i<obj2.getJSONArray("comments").length();i++) {
+				for(int i=0;i<obj2.getJSONArray(k).length();i++) {
 
-					System.out.println ("coments :"+ obj2.getJSONArray("comments").get(i));
+					System.out.println (k+ " :" + obj2.getJSONArray(k).get(i));
 				}
 
 			}
 
 			else if(k.equals("reservation")) {
+				JSONObject object1 =object.getJSONObject(k);
 
+				Iterator key2 = object1.keys();
 
-				Iterator key1 = obj1.keys();
-				while (key1.hasNext()) {
-					String p = key1.next().toString();
-					System.out.println(p+":" + obj1.getString(p));
+				while (key2.hasNext()) {
+					String m = key2.next().toString();
+					System.out.println(m+":" + object1.getString(m));
 
 				}
 
 			}
 
 			else if(k.equals("train")) {
+				JSONObject object2 = object.getJSONObject(k);
 
-
-				Iterator key2 = obj3.keys();
-				while (key2.hasNext()) {
-					String p = key2.next().toString();
-					System.out.println(p+":" +obj3.getString(p));
+				Iterator key3 = object2.keys();
+				while (key3.hasNext()) {
+					String f = key3.next().toString();
+					System.out.println(f+":" +object2.getString(f));
 
 				}
 
@@ -85,12 +89,12 @@ public class JSONFormat2 {
 
 			}
 			else if(k.equals("passenger")) {
+				JSONObject object3 = object.getJSONObject(k);
 
-
-				Iterator key3 = obj4.keys();
-				while (key3.hasNext()) {
-					String p = key3.next().toString();
-					System.out.println(p+":" +obj4.getString(p));
+				Iterator key4 = object3.keys();
+				while (key4.hasNext()) {
+					String t = key4.next().toString();
+					System.out.println(t+":" +object3.getString(t));
 
 
 				}
@@ -100,16 +104,16 @@ public class JSONFormat2 {
 			}
 
 			else 
-				System.out.println(k+":"+obj2.getString(k));
+				System.out.println(k+":"+object.getString(k));
 
 		}
 
-		System.out.println("Fani Kar");
+
 	}
 
-
-
 }
+
+
 
 
 
